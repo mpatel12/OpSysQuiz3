@@ -1,0 +1,191 @@
+
+\documentclass{beamer}
+
+\mode<presentation>
+{
+ 	\usetheme{PaloAlto}
+ 	\usecolortheme{beaver}	
+ 	\setbeamercovered{transparent}
+ 
+}
+
+\usepackage[english]{babel}
+
+\usepackage[utf8]{inputenc}
+
+
+\usepackage{times}
+\usepackage[T1]{fontenc}
+
+
+\title[Domain/OS] 
+{Domain/OS}
+
+
+
+\author[Manish Patel] 
+{Manish Patel}
+
+
+\institute[Loyola University in Chicago] % (optional, but mostly needed)
+{
+   Department of Computer Science\\
+  Loyola University in Chicago
+}
+  
+
+\date[12/14/12]
+
+
+\subject{Operating Systems}
+% This is only inserted into the PDF information catalog. Can be left
+% out. 
+
+% If you have a file called "university-logo-filename.xxx", where xxx
+% is a graphic format that can be processed by latex or pdflatex,
+% resp., then you can add a logo as follows:
+
+% \pgfdeclareimage[height=0.5cm]{university-logo}{university-logo-filename}
+% \logo{\pgfuseimage{university-logo}}
+
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+
+\section{General Info}
+
+\subsection{History}
+
+\begin{frame}{History of Domain/OS}
+  	\begin{itemize}
+  	\item Developed by Apollo Computer Inc. in 1984
+  	\item Predecessor to Aegis
+  	\item Was primarly a network based OS
+  	\item Bought by HP in 1988
+  	\item No longer supported as of January 1st, 2001
+  	\end{itemize}
+ \end{frame}
+
+\subsection{About}
+
+\begin{frame}{About Domain/OS}
+	\begin{itemize}
+	\item Derived functionality from System V and BSD UNIX
+	\item Ability to change enviroment variable with SYSTYPE command
+	\item Developed in Pascal, but had compilers for C, C++, Pascal, and Fortran
+	\item X Window System for windowing and handling the keyboard and mouse
+	\item Visual User Enviroment for the desktop enviroment 
+	\end{itemize}
+\end{frame}
+
+\subsection{Specs}
+
+\begin{frame}{System Specs}
+	\begin{itemize}
+	\item 32-bit 20MHz MC68 Processor
+	\item 4MB RAM
+	\item 15 inch (1024x800) or 19 inch (1280x1024) color CRT
+	\item 100MB, 200MB, or 400MB HDD
+	\item 1.2MB 5.25 inch Floppy Drive
+	\item 60MB .25 inch Catridge Tape Drive
+	\item 2.3GB 8mm Tape Drive
+	\item 12Mb/sec baseband Apollo Token Ring
+	\item 10Mb/sec LAN Ethernet
+	\item 4Mb/sec LAN IBM Token Ring
+	\end{itemize}
+\end{frame}
+
+\section{Detailed Look}
+
+\subsection{Kernel}
+
+\begin{frame}{Kernel}
+	\begin{itemize}
+	\item Modified version of UNIX monolithic kernel
+	\item Multiprocessor support
+		\begin{itemize}
+		\item UNIX was originally made for one processor
+		\item Identify critical sections and how to protect them
+		\item Synchronize all processes
+		\item Mutual exclusive lock/unlock
+		\item Process has to wait to aquire lock
+		\end{itemize}
+	\item Limited size of kernel
+		\begin{itemize}
+		\item Extends functionality with no modifications to kernel
+		\item Moves services to libraries
+		\item Avoids trapping kernel
+		\end{itemize}
+	\end{itemize} 
+\end{frame}
+
+\subsection{Libraries}
+
+\begin{frame}{Dynamic Loading, Linking, and Sharing of Libraries}
+	\begin{itemize}
+	\item Classified as global and private
+	\item Determined in System Configuration File
+	\item Global
+		\begin{itemize}
+		\item Labeled as global and shared in configuration file
+		\item Virtual addressing global spaces:
+			\begin{itemize}
+			\item Global Supervisor space hold limited kernel functions and data mapping
+			\item Global User space hold libraries
+			\item ie: close, open, read, and write
+			\end{itemize}
+		\item Entry points are stored in the Known Global Table
+		\item Position-Indepent Code creates transfer vector
+		\end{itemize}
+	\item Private
+		\begin{itemize}
+		\item Labeled as dynamic or static in configuration file
+		\item Dynamic: library loaded at program execution
+		\item Static: library loaded when reference is made in program
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\subsection{Storage}
+
+\begin{frame}{Single Level Storage}
+	\begin{itemize}
+	\item Multiple level storage have to explicitly copy data to primary storage to allow program to operate
+	\item Domain/OS has one level
+	\item Programs access objects by mapping object pages to process addresses
+	\item Objects over the network are accessed sameway
+	\item Demand Paging moves pages out of object dynamically over the network and locally
+	\end{itemize}
+\end{frame}
+
+\section{References}
+
+\begin{frame}{References}
+	\begin{thebibliography}{3}
+	
+	\beamertemplatebookbibitems
+	\bibitem{}
+  	% Start with overview books.
+   	 \newblock {\em Domain/OS Design Principles.}
+   	 \newblock {\em Apollo Computer Inc., 1989.}
+   	 
+   	 \beamertemplatebookbibitems
+   	 \bibitem{}
+  	% Start with overview books.
+   	 \newblock Domain/OS system Software Release Documentation
+   	 
+   	 \beamertemplatearticlebibitems
+   	 \bibitem{}
+   	 % Followed by interesting articles. Keep the list short. 
+   	 \newblock http://web.mit.edu/kolya/www/csa-faq.html
+   	 
+   	 \end{thebibliography}
+\end{frame}
+
+\end{document}
+
+
